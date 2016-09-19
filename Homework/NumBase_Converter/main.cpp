@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   main.cpp
- * Author: rcc
- *
- * Created on September 7, 2016, 6:11 PM
+/**
+ Creator: Jarone Jabonillo
+ Class: Csc-11
+ Homework assignment: Number Bases
  */
 
 #include <cstdlib>
@@ -16,42 +9,45 @@
 
 using namespace std;
 
-/*
- * 
- */
 int main(int argc, char** argv) {
-    string numbers = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    //Create index for characters
+    string index = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    //Create empty string for answer
     string ans = "";
+    //Non-negative number, base, divisior 1 & 2, and the remainder
+    unsigned int num, base, div1, div2, rem;
     
-    unsigned int num, base; //Number and base
-    unsigned int div, rem; //Divisor and remainder
-    
-    cout << "Enter an positive integer in base 10: ";
+    //Prompt user input for base 10 number
+    cout << "Enter a positive number in base 10: ";
     cin >> num;
-    
+    //Prompt user for converting base
     cout << "Enter a number base to convert to (2-36): ";
     cin >> base;
     
-    div = num;
-     
-    if(base >=2 && base <=36){
-        
+    //If the base enter is between 2 and 36
+    if(base >= 2 && base <= 36){
+        //Assign number to divisor
+        div1 = num;
         do{
-            unsigned int div2 = div/base;
-            rem = base*div2 - div;
-            div = div2;
-            ans = numbers[rem] + ans;
-           
-        }while(div >= base);
-        ans = numbers[div]+ans;
-    
-        cout <<"Results\n=================================\n"
-                <<"Base 10: " <<num <<endl
-                <<"Base " <<base << ans <<endl;
-    
+            //Divide the divisor by the base
+            div2 = div1/base;
+            //Get the remainder
+            rem = div1-(base*div2);
+            //Assign new divisor
+            div1 = div2;
+            //Append to answer
+            ans = index[rem]+ans;
+        //Continue looping till divisor is zero
+        }while(div1 > 0);
+        //Output results
+        cout <<endl <<"Results" <<endl
+                <<"=============================" <<endl
+                <<"Base 10: " << num <<endl
+                <<"Base " <<base <<": " <<ans <<endl;
     }
     else{
-        cout <<"Invalid input!\n";
+        //Prompt error
+        cout <<"Invalid input!" <<endl;
     }
     
     return 0;
